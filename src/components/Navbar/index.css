@@ -1,0 +1,19 @@
+.navbar{
+    padding: 20px;
+    display: flex;
+    background-color: #171A26;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    height: auto;
+    justify-content: space-between;
+}
+
+.navbar-logo{
+    width: 500px;
+    height: auto;
+}
+
+.image{
+    width: 100px;
+    height: auto;
+}

@@ -1,0 +1,292 @@
+.holdings-container {
+  padding: 16px;
+  background: #12182a;
+  border-radius: 10px;
+  margin: 16px 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.holdings-title {
+  font-size: 32px;
+  margin: 0 0 12px 0;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.holdings-desktop {
+  display: block;
+}
+
+.holdings-mobile {
+  display: none;
+}
+
+.holdings-table-wrap {
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  background: #12182a;
+}
+
+.holdings-table {
+  width: 100%;
+  min-width: 980px;
+  border-collapse: collapse;
+}
+
+.holdings-table th,
+.holdings-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  vertical-align: middle;
+}
+
+.holdings-table th {
+  font-size: 13px;
+  color: #d5d9e5;
+  font-weight: 500;
+  text-align: left;
+  background: #070b18;
+}
+
+.holdings-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.th-sub {
+  display: block;
+  margin-top: 2px;
+  font-size: 10px;
+  color: #97a0b8;
+  font-weight: 400;
+}
+
+.th-checkbox,
+.td-checkbox {
+  width: 44px;
+  text-align: center;
+}
+
+.row-selected {
+  background: rgba(74, 120, 255, 0.18);
+}
+
+.checkbox-wrap {
+  position: relative;
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkbox-wrap input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.custom-checkbox {
+  width: 18px;
+  height: 18px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 4px;
+  border: 2px solid #6f7c99;
+  background: #0f1526;
+  transition: all 0.2s ease;
+}
+
+.custom-checkbox::after {
+  content: '';
+  width: 5px;
+  height: 9px;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0);
+  transition: transform 0.15s ease;
+}
+
+.checkbox-wrap:hover .custom-checkbox {
+  border-color: #8da3d4;
+}
+
+.checkbox-wrap input:focus-visible + .custom-checkbox {
+  outline: 2px solid rgba(74, 120, 255, 0.7);
+  outline-offset: 2px;
+}
+
+.checkbox-wrap input:checked + .custom-checkbox {
+  background: #4a78ff;
+  border-color: #4a78ff;
+}
+
+.checkbox-wrap input:checked + .custom-checkbox::after {
+  transform: rotate(45deg) scale(1);
+}
+
+.asset-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.asset-logo {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  object-fit: cover;
+}
+
+.asset-symbol {
+  font-weight: 500;
+  color: #eef1fa;
+  font-size: 16px;
+  line-height: 1.1;
+}
+
+.asset-name {
+  font-size: 12px;
+  color: #a5aec4;
+  margin-top: 2px;
+}
+
+.cell-primary {
+  font-size: 18px;
+  color: #eef1fa;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.cell-secondary {
+  font-size: 10px;
+  color: #9ea8bf;
+  margin-top: 2px;
+}
+
+.gain-positive {
+  color: #2ee8c4;
+}
+
+.gain-negative {
+  color: #ff4d73;
+}
+
+.holdings-view-all {
+  display: inline-block;
+  margin-top: 10px;
+  color: #4a78ff;
+  text-decoration: underline;
+  font-size: 14px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.holdings-list-wrap {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.holdings-list-header {
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  background: #070b18;
+  padding: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.header-asset,
+.header-holdings {
+  color: #d5d9e5;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.header-holdings {
+  text-align: right;
+}
+
+.holdings-list-body {
+  background: #13192b;
+}
+
+.holding-row {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.holding-row:last-child {
+  border-bottom: none;
+}
+
+.holding-values {
+  text-align: right;
+}
+
+.holdings-empty {
+  padding: 32px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .holdings-title {
+    font-size: 22px;
+  }
+
+  .holdings-table {
+    min-width: 980px;
+  }
+
+  .cell-primary {
+    font-size: 15px;
+  }
+
+  .cell-secondary {
+    font-size: 11px;
+  }
+
+  .asset-logo {
+    width: 22px;
+    height: 22px;
+  }
+
+  .asset-symbol {
+    font-size: 14px;
+  }
+
+  .asset-name {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .holdings-container {
+    padding: 10px;
+  }
+
+  .holdings-title {
+    font-size: 18px;
+  }
+
+  .cell-primary {
+    font-size: 14px;
+  }
+
+  .cell-secondary {
+    font-size: 10px;
+  }
+}
