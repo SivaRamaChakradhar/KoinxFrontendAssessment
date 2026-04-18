@@ -56,10 +56,10 @@ npm run deploy
 
 ![Dashboard Screenshot 1](assets/uiscreenshot1.png)
 
-![Dashboard Screenshot 2](assets/uiscreenshot2.png)
+![Dashboard Screenshot 2](assets/uiscreenshot4.png)
 
 ### Mobile View
 
 ![Mobile Screenshot 1](assets/uiscreenshot3.png)
 
-![Mobile Screenshot 2](assets/uiscreenshot4.png)
+![Mobile Screenshot 2](assets/uiscreenshot2.png)
