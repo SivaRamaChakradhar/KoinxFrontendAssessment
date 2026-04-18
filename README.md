@@ -1,16 +1,65 @@
-# React + Vite
+# KoinX Frontend Assessment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Live Demo
 
-Currently, two official plugins are available:
+Deploy link: https://sivaramachakradhar.github.io/KoinxFrontendAssessment/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Setup Instructions
 
-## React Compiler
+### Prerequisites
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Node.js 18 or later
+- npm 9 or later
 
-## Expanding the ESLint configuration
+### 1. Clone the repository
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+git clone https://github.com/SivaRamaChakradhar/KoinxFrontendAssessment.git
+cd KoinxFrontendAssessment
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Run the project locally
+
+```bash
+npm run dev
+```
+
+After running the command, open the local URL shown in the terminal (usually http://localhost:5173).
+
+### 4. Create a production build
+
+```bash
+npm run build
+```
+
+### 5. Preview the production build
+
+```bash
+npm run preview
+```
+
+### 6. Deploy to GitHub Pages
+
+```bash
+npm run deploy
+```
+
+## UI Screenshots
+
+### Dashboard View
+
+![Dashboard Screenshot 1](assets/uiscreenshot1.png)
+
+![Dashboard Screenshot 2](assets/uiscreenshot2.png)
+
+### Mobile View
+
+![Mobile Screenshot 1](assets/uiscreenshot3.png)
+
+![Mobile Screenshot 2](assets/uiscreenshot4.png)
