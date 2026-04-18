@@ -1,5 +1,6 @@
 {
   "name": "koinxfrontendassignment",
+  "homepage": "https://sivaramachakradhar.github.io/KoinxFrontendAssessment/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "gh-pages": "^6.3.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-icons": "^5.6.0"
