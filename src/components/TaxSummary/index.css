@@ -13,7 +13,7 @@
   font-size: 24px;
   margin: 0 0 16px 0;
   display: flex;
-  color: #ffffff;
+  color: var(--text-primary);
   align-items: center;
   gap: 12px;
 }
@@ -46,12 +46,12 @@
   transform: translateX(-50%);
   width: min(200px, calc(100vw - 20px));
   max-width: calc(100vw - 24px);
-  background: #f4f5f8;
-  color: grey;
+  background: var(--popover-bg);
+  color: var(--popover-text);
   border-radius: 10px;
   padding: 12px;
   z-index: 20;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--surface-shadow);
 }
 
 .how-it-works-popover::before {
@@ -61,7 +61,7 @@
   left: 50%;
   width: 14px;
   height: 14px;
-  background: #f4f5f8;
+  background: var(--popover-bg);
   transform: translateX(-50%) rotate(45deg);
 }
 
@@ -81,7 +81,7 @@
 .accordion {
   border: 2px solid #4A78FF;
   border-radius: 12px;
-  background: #121d3a;
+  background: var(--surface-secondary);
   overflow: hidden;
   margin-bottom: 24px;
 }
@@ -127,7 +127,7 @@
   padding: 0 16px 14px;
   background: transparent;
   font-size: 13px;
-  background: #121d3a;
+  background: var(--surface-secondary);
   line-height: 1.6;
 }
 
@@ -159,7 +159,7 @@
   padding: 16px 14px;
   border: 1px solid var(--border-color);
   min-height: 252px;
-  background-color: #171A26;
+  background-color: var(--surface-primary);
   border-radius: 8px;
 }
 
@@ -210,15 +210,15 @@
 .tax-table td:first-child {
   text-align: left;
   font-weight: 500;
-  color: #e5e7ee;
+  color: var(--text-primary);
 }
 
 .tax-table .positive {
-  color: #f3f5fc;
+  color: var(--text-primary);
 }
 
 .tax-table .negative {
-  color: #f3f5fc;
+  color: var(--text-primary);
 }
 
 .tax-table .net-row {
@@ -230,7 +230,7 @@
 
 .realised-gains {
   font-size: 14px;
-  color: #eef1fa;
+  color: var(--text-primary);
   padding: 10px 0 0;
   font-weight: 600;
 }
@@ -243,7 +243,7 @@
 }
 
 .negative-amount {
-  color: #eef1fa;
+  color: var(--text-primary);
   font-weight: 600;
   margin-left: 8px;
   font-size: 40px;

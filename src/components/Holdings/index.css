@@ -1,9 +1,9 @@
 .holdings-container {
   padding: 16px;
-  background: #12182a;
+  background: var(--surface-secondary);
   border-radius: 10px;
   margin: 16px 0;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-color);
 }
 
 .holdings-title {
@@ -23,10 +23,10 @@
 
 .holdings-table-wrap {
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-color);
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  background: #12182a;
+  background: var(--table-body-bg);
 }
 
 .holdings-table {
@@ -38,16 +38,16 @@
 .holdings-table th,
 .holdings-table td {
   padding: 10px 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid var(--table-border);
   vertical-align: middle;
 }
 
 .holdings-table th {
   font-size: 13px;
-  color: #d5d9e5;
+  color: var(--text-secondary);
   font-weight: 500;
   text-align: left;
-  background: #070b18;
+  background: var(--table-header-bg);
 }
 
 .sort-header {
@@ -74,7 +74,7 @@
 
 .sort-indicator {
   font-size: 11px;
-  color: #97a0b8;
+  color: var(--text-secondary);
 }
 
 .holdings-table tbody tr:last-child td {
@@ -85,7 +85,7 @@
   display: block;
   margin-top: 2px;
   font-size: 10px;
-  color: #97a0b8;
+  color: var(--text-secondary);
   font-weight: 400;
 }
 
@@ -96,7 +96,7 @@
 }
 
 .row-selected {
-  background: rgba(74, 120, 255, 0.18);
+  background: rgba(74, 120, 255, 0.14);
 }
 
 .checkbox-wrap {
@@ -121,8 +121,8 @@
   display: inline-grid;
   place-items: center;
   border-radius: 4px;
-  border: 2px solid #6f7c99;
-  background: #0f1526;
+  border: 2px solid var(--border-color);
+  background: var(--surface-muted);
   transition: all 0.2s ease;
 }
 
@@ -164,33 +164,33 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--surface-muted);
   object-fit: cover;
 }
 
 .asset-symbol {
   font-weight: 500;
-  color: #eef1fa;
+  color: var(--text-primary);
   font-size: 16px;
   line-height: 1.1;
 }
 
 .asset-name {
   font-size: 12px;
-  color: #a5aec4;
+  color: var(--text-secondary);
   margin-top: 2px;
 }
 
 .cell-primary {
   font-size: 18px;
-  color: #eef1fa;
+  color: var(--text-primary);
   font-weight: 500;
   white-space: nowrap;
 }
 
 .cell-secondary {
   font-size: 10px;
-  color: #9ea8bf;
+  color: var(--text-secondary);
   margin-top: 2px;
 }
 
@@ -217,7 +217,7 @@
 .holdings-list-wrap {
   border-radius: 10px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-color);
 }
 
 .holdings-list-header {
@@ -225,14 +225,14 @@
   grid-template-columns: 36px 1fr auto;
   gap: 10px;
   align-items: center;
-  background: #070b18;
+  background: var(--table-header-bg);
   padding: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--table-border);
 }
 
 .header-asset,
 .header-holdings {
-  color: #d5d9e5;
+  color: var(--text-secondary);
   font-size: 13px;
   font-weight: 500;
 }
@@ -242,7 +242,7 @@
 }
 
 .holdings-list-body {
-  background: #13192b;
+  background: var(--table-body-bg);
 }
 
 .holding-row {
@@ -251,7 +251,7 @@
   gap: 10px;
   align-items: center;
   padding: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid var(--table-border);
 }
 
 .holding-row:last-child {

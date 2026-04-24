@@ -1,11 +1,14 @@
 .navbar{
     padding: 20px;
     display: flex;
-    background-color: #171A26;
+    background-color: var(--nav-bg);
+    border-bottom: 1px solid var(--border-color);
     width: 100vw;
     margin-left: calc(-50vw + 50%);
     height: auto;
     justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(18px);
 }
 
 .navbar-logo{
@@ -16,4 +19,30 @@
 .image{
     width: 100px;
     height: auto;
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.theme-toggle,
+.menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--theme-toggle-bg);
+    color: var(--theme-toggle-color);
+    border: 1px solid var(--theme-toggle-border);
+    box-shadow: var(--surface-shadow);
+}
+
+.theme-toggle:hover,
+.menu-toggle:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
 }
