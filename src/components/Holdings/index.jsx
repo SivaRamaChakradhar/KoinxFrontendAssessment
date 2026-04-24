@@ -21,7 +21,8 @@ const Holdings = ({
   const formatSignedRupee = (value) => {
     const amount = Number(value)
     const sign = amount >= 0 ? '+' : '-'
-    return `${sign}$${formatNumber(Math.abs(amount))}`
+    const fractionDigits = Math.abs(amount) < 1 ? 6 : 2
+    return `${sign}$${formatNumber(Math.abs(amount), fractionDigits)}`
   }
 
   const getSortValue = (holding, key) => {
@@ -145,17 +146,7 @@ const Holdings = ({
                   </button>
                 </th>
                 <th>
-                  <button
-                    type="button"
-                    className="sort-header"
-                    onClick={() => handleSort('amountToSell')}
-                    aria-label={`Sort by amount to sell ${sortConfig.key === 'amountToSell' && sortConfig.direction === 'asc' ? 'descending' : 'ascending'}`}
-                  >
-                    Amount to Sell
-                    <span className="sort-indicator">
-                      {getSortIcon('amountToSell')}
-                    </span>
-                  </button>
+                  Amount to Sell
                 </th>
               </tr>
             </thead>
