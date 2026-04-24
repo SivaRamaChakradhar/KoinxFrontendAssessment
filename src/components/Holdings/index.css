@@ -50,6 +50,33 @@
   background: #070b18;
 }
 
+.sort-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.sort-header:hover {
+  color: #ffffff;
+}
+
+.sort-header:focus-visible {
+  outline: 2px solid rgba(74, 120, 255, 0.8);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.sort-indicator {
+  font-size: 11px;
+  color: #97a0b8;
+}
+
 .holdings-table tbody tr:last-child td {
   border-bottom: none;
 }
@@ -74,7 +101,7 @@
 
 .checkbox-wrap {
   position: relative;
-  display: inline-flex;
+  display: flex;
   width: 20px;
   height: 20px;
   align-items: center;

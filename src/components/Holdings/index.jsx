@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
+import { RiExpandUpDownLine } from 'react-icons/ri'
 import './index.css'
 
 const Holdings = ({
@@ -8,6 +10,7 @@ const Holdings = ({
   onToggleAllHoldings,
 }) => {
   const [showAllRows, setShowAllRows] = useState(false)
+  const [sortConfig, setSortConfig] = useState({ key: 'coin', direction: 'asc' })
 
   const formatNumber = (value, maxFractionDigits = 2) =>
     Number(value).toLocaleString('en-IN', {
@@ -18,11 +21,69 @@ const Holdings = ({
   const formatSignedRupee = (value) => {
     const amount = Number(value)
     const sign = amount >= 0 ? '+' : '-'
-    return `${sign}₹${formatNumber(Math.abs(amount))}`
+    return `${sign}$${formatNumber(Math.abs(amount))}`
   }
 
+  const getSortValue = (holding, key) => {
+    switch (key) {
+      case 'asset':
+        return (holding.coinName || holding.coin || '').toLowerCase()
+      case 'holdings':
+        return Number(holding.totalHoldings ?? holding.totalHolding ?? 0)
+      case 'currentPrice':
+        return Number(holding.currentPrice ?? 0)
+      case 'shortTerm':
+        return Number(holding.stcg?.gain ?? 0)
+      case 'longTerm':
+        return Number(holding.ltcg?.gain ?? 0)
+      case 'amountToSell':
+        return Number(holding.totalHoldings ?? holding.totalHolding ?? 0)
+      case 'coin':
+      default:
+        return (holding.coin || '').toLowerCase()
+    }
+  }
+
+  const handleSort = (key) => {
+    setSortConfig((current) => ({
+      key,
+      direction: current.key === key && current.direction === 'asc' ? 'desc' : 'asc',
+    }))
+  }
+
+  const sortedHoldings = useMemo(() => {
+    const items = [...(holdings || [])]
+
+    items.sort((a, b) => {
+      const valueA = getSortValue(a, sortConfig.key)
+      const valueB = getSortValue(b, sortConfig.key)
+
+      if (typeof valueA === 'string' && typeof valueB === 'string') {
+        return sortConfig.direction === 'asc'
+          ? valueA.localeCompare(valueB)
+          : valueB.localeCompare(valueA)
+      }
+
+      return sortConfig.direction === 'asc' ? valueA - valueB : valueB - valueA
+    })
+
+    return items
+  }, [holdings, sortConfig])
+
   const allSelected = holdings.length > 0 && selectedHoldingIds.length === holdings.length
-  const displayedHoldings = showAllRows ? holdings : holdings.slice(0, 6)
+  const displayedHoldings = showAllRows ? sortedHoldings : sortedHoldings.slice(0, 6)
+
+  const getSortIcon = (key) => {
+    if (sortConfig.key !== key) {
+      return <RiExpandUpDownLine aria-hidden="true" />
+    }
+
+    return sortConfig.direction === 'asc' ? (
+      <FaChevronUp aria-hidden="true" />
+    ) : (
+      <FaChevronDown aria-hidden="true" />
+    )
+  }
 
   if (!holdings || holdings.length === 0) {
     return <div className="holdings-empty">No holdings data available</div>
@@ -47,22 +108,61 @@ const Holdings = ({
                     <span className="custom-checkbox" />
                   </label>
                 </th>
-                <th>Asset</th>
+                <th>
+                    Asset
+                </th>
                 <th>
                   Holdings
-                  <span className="th-sub">Current Market Rate</span>
+                  <span className="th-sub">Avg Buy Price</span>
                 </th>
-                <th>Total Current Value</th>
-                <th>Short-term</th>
-                <th>Long-Term</th>
-                <th>Amount to Sell</th>
+                <th>
+                  Current Price
+                </th>
+                <th>
+                  <button
+                    type="button"
+                    className="sort-header"
+                    onClick={() => handleSort('shortTerm')}
+                    aria-label={`Sort by short-term ${sortConfig.key === 'shortTerm' && sortConfig.direction === 'asc' ? 'descending' : 'ascending'}`}
+                  >
+                    Short-term
+                    <span className="sort-indicator">
+                      {getSortIcon('shortTerm')}
+                    </span>
+                  </button>
+                </th>
+                <th>
+                  <button
+                    type="button"
+                    className="sort-header"
+                    onClick={() => handleSort('longTerm')}
+                    aria-label={`Sort by long-term ${sortConfig.key === 'longTerm' && sortConfig.direction === 'asc' ? 'descending' : 'ascending'}`}
+                  >
+                    Long-Term
+                    <span className="sort-indicator">
+                      {getSortIcon('longTerm')}
+                    </span>
+                  </button>
+                </th>
+                <th>
+                  <button
+                    type="button"
+                    className="sort-header"
+                    onClick={() => handleSort('amountToSell')}
+                    aria-label={`Sort by amount to sell ${sortConfig.key === 'amountToSell' && sortConfig.direction === 'asc' ? 'descending' : 'ascending'}`}
+                  >
+                    Amount to Sell
+                    <span className="sort-indicator">
+                      {getSortIcon('amountToSell')}
+                    </span>
+                  </button>
+                </th>
               </tr>
             </thead>
             <tbody>
               {displayedHoldings.map((holding) => {
                 const isSelected = selectedHoldingIds.includes(holding.id)
                 const totalHoldings = Number(holding.totalHoldings ?? holding.totalHolding ?? 0)
-                const currentValue = Number(holding.currentPrice) * totalHoldings
                 const displayName = (holding.coinName || '').length > 18 ? holding.coin : holding.coinName
 
                 return (
@@ -96,10 +196,10 @@ const Holdings = ({
                     </td>
                     <td>
                       <div className="cell-primary">{formatNumber(totalHoldings, 6)} {holding.coin}</div>
-                      <div className="cell-secondary">₹ {formatNumber(holding.averageBuyPrice)}/{holding.coin}</div>
+                      <div className="cell-secondary">$ {formatNumber(holding.averageBuyPrice)}/{holding.coin}</div>
                     </td>
                     <td>
-                      <div className="cell-primary">₹ {formatNumber(currentValue)}</div>
+                      <div className="cell-primary">$ {formatNumber(holding.currentPrice)}</div>
                     </td>
                     <td>
                       <div className={`cell-primary ${holding.stcg.gain >= 0 ? 'gain-positive' : 'gain-negative'}`}>

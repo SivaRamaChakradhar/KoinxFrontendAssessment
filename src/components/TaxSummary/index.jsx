@@ -43,15 +43,15 @@ const TaxSummary = ({ tax, selectedHoldings }) => {
     const shortTermGain = Number(holding?.stcg?.gain || 0);
     const longTermGain = Number(holding?.ltcg?.gain || 0);
 
-    if (shortTermGain >= 0) {
+    if (shortTermGain > 0) {
       postData.stcg.profits += shortTermGain;
-    } else {
+    } else if (shortTermGain < 0) {
       postData.stcg.losses += Math.abs(shortTermGain);
     }
 
-    if (longTermGain >= 0) {
+    if (longTermGain > 0) {
       postData.ltcg.profits += longTermGain;
-    } else {
+    } else if (longTermGain < 0) {
       postData.ltcg.losses += Math.abs(longTermGain);
     }
   });
@@ -184,11 +184,11 @@ const TaxSummary = ({ tax, selectedHoldings }) => {
               Effective Capital Gains: <span className="negative-amount">{formatSignedCurrency(totalGainsPost)}</span>
             </div>
 
-            {savings > 0 && (
+            {totalGainsPost < totalGainsPre && (
               <div className="after-savings-note">
                 <span className="after-savings-icon">🎉</span>
                 <span>
-                  You are going to save upto <strong>$ {formatCurrency(savings)}</strong>
+                  Your taxable capital gains are reduced by: <strong>$ {formatCurrency(savings)}</strong>
                 </span>
               </div>
             )}
