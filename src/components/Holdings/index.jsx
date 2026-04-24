@@ -3,6 +3,8 @@ import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
 import { RiExpandUpDownLine } from 'react-icons/ri'
 import './index.css'
 
+const SORTABLE_KEYS = ['shortTerm', 'longTerm']
+
 const Holdings = ({
   holdings,
   selectedHoldingIds,
@@ -10,7 +12,7 @@ const Holdings = ({
   onToggleAllHoldings,
 }) => {
   const [showAllRows, setShowAllRows] = useState(false)
-  const [sortConfig, setSortConfig] = useState({ key: 'coin', direction: 'asc' })
+  const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' })
 
   const formatNumber = (value, maxFractionDigits = 2) =>
     Number(value).toLocaleString('en-IN', {
@@ -27,25 +29,20 @@ const Holdings = ({
 
   const getSortValue = (holding, key) => {
     switch (key) {
-      case 'asset':
-        return (holding.coinName || holding.coin || '').toLowerCase()
-      case 'holdings':
-        return Number(holding.totalHoldings ?? holding.totalHolding ?? 0)
-      case 'currentPrice':
-        return Number(holding.currentPrice ?? 0)
       case 'shortTerm':
         return Number(holding.stcg?.gain ?? 0)
       case 'longTerm':
         return Number(holding.ltcg?.gain ?? 0)
-      case 'amountToSell':
-        return Number(holding.totalHoldings ?? holding.totalHolding ?? 0)
-      case 'coin':
       default:
-        return (holding.coin || '').toLowerCase()
+        return 0
     }
   }
 
   const handleSort = (key) => {
+    if (!SORTABLE_KEYS.includes(key)) {
+      return
+    }
+
     setSortConfig((current) => ({
       key,
       direction: current.key === key && current.direction === 'asc' ? 'desc' : 'asc',
@@ -54,6 +51,10 @@ const Holdings = ({
 
   const sortedHoldings = useMemo(() => {
     const items = [...(holdings || [])]
+
+    if (!SORTABLE_KEYS.includes(sortConfig.key)) {
+      return items
+    }
 
     items.sort((a, b) => {
       const valueA = getSortValue(a, sortConfig.key)
@@ -76,7 +77,7 @@ const Holdings = ({
 
   const getSortIcon = (key) => {
     if (sortConfig.key !== key) {
-      return <RiExpandUpDownLine aria-hidden="true" />
+      return <RiExpandUpDownLine size={20} aria-hidden="true" />
     }
 
     return sortConfig.direction === 'asc' ? (
